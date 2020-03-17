@@ -53,7 +53,6 @@ system_update(){
 	_ pacman -Syu
 }
 mirror_setup(){
-	system_update
 	package_install reflector
 	_ reflector --country $COUNTRYCODE --fastest 10 --protocol http --sort rate --save /etc/pacman.d/mirrorlist
 }
