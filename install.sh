@@ -11,7 +11,7 @@ if [ ! -f "./$PROG" ]; then
 fi
 
 while read p; do
-	SEARCH_RESULT="$(pacman -Ss $p)"
+	SEARCH_RESULT="$(${AURHELPER} -Ss $p)"
 	if [ -n "$SEARCH_RESULT" ]; then
 		$AURHELPER -Qi $p > /dev/null
 		if [ $? -eq 1 ]; then

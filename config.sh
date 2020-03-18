@@ -21,7 +21,7 @@ KEYMAP="de"
 REGION="Europe"
 CITY="Berlin"
 
-LOCALE="de_DE.UTF-8 UTF-8"
+LOCALE="en_EN.UTF-8 UTF-8"
 
 # Root and user password
 PASSWORD=""
@@ -36,3 +36,6 @@ DISPLAY_MANAGER="sddm"
 # Home directory repository
 CONFIG_FILES=""
 INSTALLATION=""
+
+# Services
+declare -a SERVICES=("NetworkManager")

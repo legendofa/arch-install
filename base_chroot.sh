@@ -1,5 +1,5 @@
 #!/bin/bash
-_
+
 source config.sh
 source funcs.sh
 
@@ -36,9 +36,6 @@ _ systemctl enable systemd-swap
 
 # Create user
 _ useradd -m $USERNAME -g wheel
-# _ mkdir /home/$USERNAME
-# _ chown $USERNAME /home/$USERNAME
-# _ usermod -d /home/$USERNAME -m $USERNAME
 _ chpasswd <<< "${USERNAME}:$PASSWORD"
 
 # Allow user to run sudo without password
@@ -59,12 +56,22 @@ systembeep_off
 aur_package_install $USERNAME $AURHELPER $DISPLAY_MANAGER
 systemctl enable "${DISPLAY_MANAGER}.service"
 
+# Install user configurations
+_ sudo -u git clone $CONFIG_FILES .
+_ sudo -u $(INSTALLATION)
+system_update
+
 # Install programs
 _ bash install.sh
 
-# Install user configurations
-_ sudo -u $1 git clone $CONFIG_FILES
-$(INSTALLATION)
+# Enable services
+for i in "${SERVICES[@]}"
+do
+   _ systemctl enable $i
+done
+
+# Set X11 keymap
+_ sudo -u $USERNAME localectl --no-convert set-x11-keymap $KEYMAP
 
 # Changing sudoers file
 new_permissions "%wheel ALL=(ALL) ALL #ARCH
