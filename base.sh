@@ -1,7 +1,8 @@
 #!/bin/bash
 
-source config.sh
-source funcs.sh
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+source $DIR/config.sh
+source $DIR/funcs.sh
 
 # Environment checks
 check_root
@@ -26,5 +27,5 @@ _ genfstab -U /mnt >> /mnt/etc/fstab
 
 # Chroot and preparation
 _ mkdir /mnt/scripts
-_ cp -r . /mnt/scripts
-_ arch-chroot /mnt /bin/bash -c "cd /scripts && bash base_chroot.sh"
+_ cp -r * /mnt/scripts
+_ arch-chroot /mnt /bin/bash -c "bash base_chroot.sh"
