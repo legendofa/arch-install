@@ -57,14 +57,16 @@ aur_package_install $USERNAME $AURHELPER $DISPLAY_MANAGER
 systemctl enable "${DISPLAY_MANAGER}.service"
 
 # Install user configurations
-_ sudo -u git clone $CONFIG_FILES .
-_ sudo -u $(INSTALLATION)
+_ git clone $CONFIG_FILES /temp
+_ sudo -u $USERNAME cp -r /temp/* /home/$USERNAME
+_ sudo -u $USERNAME $(INSTALLATION)
 system_update
 
 # Install programs
 _ bash install.sh
 
 # Enable services
+_ systemctl daemon-reload
 for i in "${SERVICES[@]}"
 do
    _ systemctl enable $i
