@@ -10,7 +10,7 @@ SPACING="~~~"
 COLOR='\033[0;36m'
 
 # Installation medium
-DISK="/dev/sda"
+DISK="/dev/vda"
 
 # Mirrors
 COUNTRYCODE="DE"

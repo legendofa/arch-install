@@ -67,7 +67,7 @@ _ sudo -u $USERNAME $(bash $INSTALLATION)
 system_update
 
 # Install programs
-_ bash install.sh
+_ bash $DIR/install.sh
 
 # Enable services
 _ systemctl daemon-reload

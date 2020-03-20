@@ -15,7 +15,7 @@ print_block(){
 }
 print_block_color(){
 	echo $SPACING
-	print_color $1 $2 $3
+	print_color "$1" "$2" "$3"
 	echo $SPACING
 }
 _(){
