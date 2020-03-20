@@ -24,18 +24,18 @@ CITY="Berlin"
 LOCALE="en_EN.UTF-8 UTF-8"
 
 # Root and user password
-PASSWORD=""
+PASSWORD="Test"
 
 # Username
-USERNAME=""
+USERNAME="julian"
 
 AURHELPER="yay"
 
 DISPLAY_MANAGER="sddm"
 
 # Home directory repository
-CONFIG_FILES=""
-INSTALLATION=""
+CONFIG_FILES="/post/julian"
+INSTALLATION="/home/julian/bin/setup.sh"
 
 # Services
 declare -a SERVICES=("NetworkManager")

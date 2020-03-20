@@ -58,6 +58,8 @@ aur_package_install $USERNAME $AURHELPER $DISPLAY_MANAGER
 systemctl enable "${DISPLAY_MANAGER}.service"
 
 # Install user configurations
+_ mkdir /post
+_ mount /dev/sda1 /post
 _ rm -r /temp
 _ git clone $CONFIG_FILES /temp
 _ sudo -u $USERNAME cp -r /temp/* /home/$USERNAME
