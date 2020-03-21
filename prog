@@ -49,6 +49,7 @@ otf-fira-code
 #pandoc
 papirus-icon-theme
 passwordsafe-git
+pcmanfm
 picom
 polybar-git
 powertop
@@ -92,4 +93,5 @@ xidlehook
 #xournalpp
 yay
 zsh-completions
+xarchiver
 xorg-xrdb

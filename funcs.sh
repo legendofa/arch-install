@@ -37,11 +37,7 @@ partition(){
 
 # Write functions
 lines(){
-	local target=$1
-	echo -en "\n${COLOR}configuring $target\e[0;0m\n\n" 1>&2
-	for x in $(seq 2 ${#}); do
-		echo "${!x}" >> $target
-	done
+	grep -qxF "$1" $2 || echo "$1" >> $2
 }
 new_permissions(){
 	_ sed -i "/#ARCH/d" /etc/sudoers
