@@ -38,4 +38,4 @@ CONFIG_FILES="/post/julian"
 INSTALLATION="/home/julian/bin/setup.sh"
 
 # Services
-declare -a SERVICES=("NetworkManager")
+declare -a SERVICES=("$DISPLAY_MANAGER" "NetworkManager" "autofs" "org.cups.cupsd.path" "ufw" "update-background.timer")

@@ -55,7 +55,6 @@ systembeep_off
 
 # Install display manager
 aur_package_install $USERNAME $AURHELPER $DISPLAY_MANAGER
-systemctl enable "${DISPLAY_MANAGER}.service"
 
 # Install user configurations
 _ mkdir /post
