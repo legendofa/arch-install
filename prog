@@ -1,4 +1,7 @@
+alsa-utils
 autofs
+#android-sdk
+#android-tools
 baobab
 bash-completion
 betterlockscreen
@@ -33,6 +36,7 @@ libdvdread
 #libreoffice-fresh
 #lutris
 #minecraft-launcher
+man
 mullvad-vpn
 nano
 neofetch
@@ -54,6 +58,9 @@ picom
 polybar-git
 powertop
 python-pywal
+qt5‑graphicaleffects
+qt5‑quickcontrols2
+qt5‑svg
 #riot-desktop
 rofi
 rust

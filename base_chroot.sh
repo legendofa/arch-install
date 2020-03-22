@@ -46,7 +46,7 @@ new_permissions "%wheel ALL=(ALL) NOPASSWD: ALL"
 package_install wget
 package_install curl
 package_install git
-package_install go
+package_install go-pie
 manual_install $AURHELPER $USERNAME 
 $AURHELPER -Syu
 
@@ -62,6 +62,8 @@ _ mkdir /post
 _ mount /dev/sda1 /post
 _ rm -r /temp
 _ git clone $CONFIG_FILES /temp
+_ chown -R $USERNAME /temp
+_ chgrp -R $USERNAME /temp
 _ sudo -u $USERNAME cp -r /temp/* /home/$USERNAME
 _ sudo -u $USERNAME $(bash $INSTALLATION)
 system_update
