@@ -12,7 +12,7 @@ _ ln -sf /usr/share/zoneinfo/$REGION/$CITY /etc/localtime
 _ hwclock --systohc
 
 # Localisation
-lines /etc/locale.gen $LOCALE
+lines /etc/locale.gen "$LOCALE"
 lines /etc/locale.conf "LANG=${LOCALE/ */}"
 _ locale-gen
 
