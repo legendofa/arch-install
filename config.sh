@@ -34,7 +34,7 @@ AURHELPER="yay"
 DISPLAY_MANAGER="sddm"
 
 # Home directory repository
-CONFIG_FILES="/post/julian"
+CONFIG_FILES="http://192.168.178.67:8080/Julian/julian"
 INSTALLATION="/home/julian/bin/setup.sh"
 
 # Services

@@ -27,5 +27,5 @@ _ genfstab -U /mnt >> /mnt/etc/fstab
 
 # Chroot and preparation
 _ mkdir /mnt/scripts
-_ cp -r * /mnt/scripts
+_ cp -r $DIR/* /mnt/scripts
 _ arch-chroot /mnt /bin/bash -c "bash /scripts/base_chroot.sh"
