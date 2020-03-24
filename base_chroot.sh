@@ -26,6 +26,7 @@ _ chpasswd <<< "root:$PASSWORD"
 # Bootloader
 package_install grub
 package_install efibootmgr
+_ rm /etc/fstab
 _ grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 lines /etc/default/grub "GRUB_TIMEOUT=.5"
 _ grub-mkconfig -o /boot/grub/grub.cfg
