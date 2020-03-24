@@ -37,7 +37,7 @@ partition(){
 
 # Write functions
 lines(){
-	grep -qxF "$1" $2 || echo "$1" >> $2
+	grep -qxF "$2" $1 || echo "$2" >> $1
 }
 new_permissions(){
 	_ sed -i "/#ARCH/d" /etc/sudoers
