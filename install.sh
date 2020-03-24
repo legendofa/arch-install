@@ -6,7 +6,7 @@ source $DIR/funcs.sh
 
 check_connection
 
-if [ ! -f "./$PROG" ]; then
+if [ ! -f "${DIR}/${PROG}" ]; then
 	echo $LOGO "Please specify the path of the list of programms to install."
 	exit 1
 fi
@@ -29,4 +29,4 @@ while read p; do
 	else
 		print_color "Pkg:" $p "is not in the repo."
 	fi
-done <$PROG
+done <$DIR/$PROG
