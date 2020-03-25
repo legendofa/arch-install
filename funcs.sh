@@ -39,7 +39,6 @@ partition(){
 	_ cryptsetup open "${1}2" cryptroot
 	_ mount /dev/mapper/cryptroot /mnt
 	# EFI partition preparation
-	_ mkfs.ext4 "${1}2"
 	_ mkfs.fat -F32 "${1}1"
 	_ mkdir /mnt/efi
 	_ mount "${1}1" /mnt/efi
