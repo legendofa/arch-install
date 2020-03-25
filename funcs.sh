@@ -30,7 +30,7 @@ partition(){
 	_ parted --script $1 mkpart primary ext4 260MiB 100%
 	# Non-boot LUKS encryption
 	lines /keyfile "$LUKS_PASSWORD"
-	_ cryptsetup -y -v luksFormat "${1}2" --key-file=/keyfile
+	_ cryptsetup -y -v luksFormat "${1}2" /keyfile
 	_ cryptsetup open "${1}2" cryptroot
 	_ mkfs.ext4 /dev/mapper/cryptroot
 	_ mount /dev/mapper/cryptroot /mnt
@@ -48,7 +48,7 @@ partition(){
 
 # Write functions
 lines(){
-	grep -qxF "$2" $1 || echo "$2" >> $1
+	_ grep -qxF "$2" $1 || echo "$2" >> $1
 }
 new_permissions(){
 	_ sed -i "/#ARCH/d" /etc/sudoers
