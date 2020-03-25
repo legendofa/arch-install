@@ -37,7 +37,7 @@ package_install efibootmgr
 _ rm /etc/fstab
 _ grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 lines /etc/default/grub "GRUB_TIMEOUT=.5"
-lines /etc/default/grub "GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/${DISK}2:luks:allow-discards\""
+lines /etc/default/grub "GRUB_CMDLINE_LINUX=\"cryptdevice=${DISK}2:luks:allow-discards\""
 _ grub-mkconfig -o /boot/grub/grub.cfg
 
 # Enable swap in swapfile
