@@ -29,9 +29,8 @@ partition(){
 	_ parted --script $1 mkpart primary ext4 1MiB 260MiB
 	_ parted --script $1 mkpart primary ext4 260MiB 100%
 	# Non-boot LUKS encryption
-	lines /keyfile "$LUKS_PASSWORD"
-	_ cryptsetup -y -v luksFormat "${1}2" /keyfile
-	_ cryptsetup open "${1}2" cryptroot
+	_ echo -en "$LUKS_PASSWORD" | cryptsetup -c aes-xts-plain -y -s 512 luksFormat "${1}2"
+	_ echo -en "$LUKS_PASSWORD" | cryptsetup open "${1}2" cryptroot
 	_ mkfs.ext4 /dev/mapper/cryptroot
 	_ mount /dev/mapper/cryptroot /mnt
 	# System check
