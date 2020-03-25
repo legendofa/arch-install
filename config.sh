@@ -12,6 +12,8 @@ COLOR='\033[0;36m'
 # Installation medium
 DISK="/dev/vda"
 
+LUKS_PASSWORD="Test"
+
 WIFI_SETUP=0
 
 # Mirrors
