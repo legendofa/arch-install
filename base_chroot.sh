@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Stop script on exit 1
+set -e
+set -o pipefail
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 source $DIR/config.sh
 source $DIR/funcs.sh
@@ -80,7 +84,7 @@ do
 done
 
 # Set X11 keymap
-_ sudo -u $USERNAME localectl --no-convert set-x11-keymap $KEYMAP
+_ sudo -u $USERNAME lines /home/$USERNAME/.xinitrc "setxkbmap -layout ${KEYMAP}"
 
 # Changing sudoers file
 new_permissions "%wheel ALL=(ALL) ALL #ARCH
