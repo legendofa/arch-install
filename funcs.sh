@@ -36,7 +36,7 @@ partition(){
 	# System check
 	_ umount /mnt
 	_ cryptsetup close cryptroot
-	_ cryptsetup open /dev/sda2 cryptroot
+	_ cryptsetup open "${1}2" cryptroot
 	_ mount /dev/mapper/cryptroot /mnt
 	# EFI partition preparation
 	_ mkfs.ext4 "${1}2"
