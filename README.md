@@ -8,6 +8,7 @@
 #### Credit to:
 
 https://github.com/LukeSmithxyz/LARBS \
-https://github.com/helmuthdu/aui
+https://github.com/helmuthdu/aui \
+https://gist.github.com/mattiaslundberg/8620837
 
 for helping me with some useful code examples...

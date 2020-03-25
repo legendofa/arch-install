@@ -13,6 +13,9 @@ check_root
 check_archlinux
 
 # Basic connection, time and keyboard setup
+if [ $WIFI_SETUP -eq 1 ]; then
+	wifi-menu
+fi
 check_connection
 _ loadkeys $KEYMAP
 _ timedatectl set-ntp true
@@ -24,7 +27,7 @@ partition $DISK
 mirror_setup
 
 # Install Arch
-_ pacstrap /mnt base base-devel linux linux-firmware sudo
+_ pacstrap /mnt base base-devel linux linux-firmware sudo nano
 
 # Configure the system
 _ genfstab -U /mnt >> /mnt/etc/fstab

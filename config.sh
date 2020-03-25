@@ -12,6 +12,8 @@ COLOR='\033[0;36m'
 # Installation medium
 DISK="/dev/vda"
 
+WIFI_SETUP=0
+
 # Mirrors
 COUNTRYCODE="DE"
 
@@ -38,4 +40,4 @@ CONFIG_FILES="http://192.168.178.67:8080/Julian/julian"
 INSTALLATION="/home/julian/bin/setup.sh"
 
 # Services
-declare -a SERVICES=("$DISPLAY_MANAGER" "NetworkManager" "autofs" "org.cups.cupsd.path" "ufw" "update-background.timer")
+declare -a SERVICES=("$DISPLAY_MANAGER" "NetworkManager" "autofs" "org.cups.cupsd.path" "ufw" "usbguard" "update-background.timer")

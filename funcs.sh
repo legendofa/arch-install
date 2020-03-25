@@ -28,8 +28,18 @@ partition(){
 	_ parted --script $1 mklabel gpt
 	_ parted --script $1 mkpart primary ext4 1MiB 260MiB
 	_ parted --script $1 mkpart primary ext4 260MiB 100%
+	# Non-boot LUKS encryption
+	_ cryptsetup -y -v luksFormat "/dev/${1}2"
+	_ cryptsetup open "/dev/${1}2" cryptroot
+	_ mkfs.ext4 /dev/mapper/cryptroot
+	_ mount /dev/mapper/cryptroot /mnt
+	# System check
+	_ umount /mnt
+	_ cryptsetup close cryptroot
+	_ cryptsetup open /dev/sda2 cryptroot
+	_ mount /dev/mapper/cryptroot /mnt
+	# EFI partition preparation
 	_ mkfs.ext4 "${1}2"
-	_ mount "${1}2" /mnt
 	_ mkfs.fat -F32 "${1}1"
 	_ mkdir /mnt/efi
 	_ mount "${1}1" /mnt/efi

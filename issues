@@ -3,5 +3,5 @@
 - check -> keymap
 - check -> exit
 - check -> programs dont install correctly
-- luks
-- usbguard
+- check -> luks
+- check -> usbguard
