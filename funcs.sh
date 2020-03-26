@@ -64,6 +64,8 @@ mirror_setup(){
 package_install(){
 	if [ ! "$(pacman -Qi $1)" ]; then
 		_ pacman -S $1 --noconfirm
+	else
+		print_color "Pkg:" $p "is already installed."
 	fi
 }
 manual_install(){
@@ -79,6 +81,8 @@ manual_install(){
 aur_package_install(){
 	if [ ! "$($2 -Qi $3)" ]; then
 		_ sudo -u $1 $2 -S --noconfirm $3
+	else
+		print_color "Pkg:" $p "is already installed."
 	fi
 }
 
