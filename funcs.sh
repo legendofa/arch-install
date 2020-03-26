@@ -62,7 +62,7 @@ mirror_setup(){
 	_ reflector --country $COUNTRYCODE --fastest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 }
 package_install(){
-	if [ ! pacman -Qi "$1" ]; then
+	if [ ! $(pacman -Qi "$1") ]; then
 		_ pacman -S $1 --noconfirm
 	fi
 }

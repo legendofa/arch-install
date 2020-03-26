@@ -69,7 +69,8 @@ systembeep_off
 aur_package_install $USERNAME $AURHELPER $DISPLAY_MANAGER
 
 # Install user configurations
-_ mkdir -p /temp
+_ rm -rf /temp
+_ mkdir /temp
 _ git clone $CONFIG_FILES /temp
 _ chown -R $USERNAME /temp
 _ chgrp -R wheel /temp
