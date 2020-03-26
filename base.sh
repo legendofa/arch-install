@@ -30,6 +30,7 @@ mirror_setup
 _ pacstrap /mnt base base-devel linux linux-firmware sudo nano
 
 # Configure the system
+_ rm -f /mnt/etc/fstab
 _ genfstab -U /mnt >> /mnt/etc/fstab
 
 # Chroot and preparation

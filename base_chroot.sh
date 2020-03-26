@@ -28,15 +28,14 @@ _ dhcpcd
 _ chpasswd <<< "root:$PASSWORD"
 
 # Configure mkinitcpio
-sed -i -e 's/MODULES=()/MODULES=(ext4)/g' /etc/mkinitcpio.conf
-sed -i -e 's/HOOKS=(/HOOKS=(keyboard keymap encrypt /g' /etc/mkinitcpio.conf
+_ sed -i -e 's/MODULES=()/MODULES=(ext4)/g' /etc/mkinitcpio.conf
+_ sed -i -e 's/HOOKS=(/HOOKS=(keyboard keymap encrypt /g' /etc/mkinitcpio.conf
 
 # Bootloader
 package_install grub
 package_install efibootmgr
 _ rm -f /etc/fstab
 _ grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
-lines /etc/default/grub "GRUB_ENABLE_CRYPTODISK=y"
 lines /etc/default/grub "GRUB_TIMEOUT=.5"
 lines /etc/default/grub "GRUB_CMDLINE_LINUX=\"cryptdevice=${DISK}2:luks:allow-discards\""
 _ grub-mkconfig -o /boot/grub/grub.cfg
