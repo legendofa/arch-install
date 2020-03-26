@@ -81,7 +81,7 @@ _ shopt -s dotglob nullglob
 _ sudo -u $USERNAME cp -rf /temp/* /home/$USERNAME
 _ shopt -u dotglob nullglob
 _ rm -r /temp
-_ sudo -u $USERNAME $(bash $INSTALLATION)
+_ sudo -u $USERNAME bash $INSTALLATION
 system_update
 
 # Enable services
