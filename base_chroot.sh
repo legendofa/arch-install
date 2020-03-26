@@ -34,7 +34,7 @@ sed -i -e 's/HOOKS=(/HOOKS=(keyboard keymap encrypt /g' /etc/mkinitcpio.conf
 # Bootloader
 package_install grub
 package_install efibootmgr
-_ rm /etc/fstab
+_ rm -f /etc/fstab
 _ grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 lines /etc/default/grub "GRUB_TIMEOUT=.5"
 lines /etc/default/grub "GRUB_CMDLINE_LINUX=\"cryptdevice=${DISK}2:luks:allow-discards\""
@@ -46,7 +46,9 @@ _ sed "s/swapfc_enabled=0/swapfc_enabled=1/g" /etc/systemd/swap.conf
 _ systemctl enable systemd-swap
 
 # Create user
-_ useradd -m $USERNAME -g wheel
+if [ ! id -u "$USERNAME"]; then
+	_ useradd -m $USERNAME -g wheel
+fi
 _ chpasswd <<< "${USERNAME}:$PASSWORD"
 
 # Allow user to run sudo without password

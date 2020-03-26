@@ -59,7 +59,7 @@ system_update(){
 }
 mirror_setup(){
 	package_install reflector
-	_ reflector --country $COUNTRYCODE --fastest 10 --protocol http --sort rate --save /etc/pacman.d/mirrorlist
+	_ reflector --country $COUNTRYCODE --fastest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 }
 package_install(){
 	_ pacman -S $1 --noconfirm
