@@ -68,6 +68,9 @@ systembeep_off
 # Install display manager
 aur_package_install $USERNAME $AURHELPER $DISPLAY_MANAGER
 
+# Install programs
+_ bash $DIR/install.sh
+
 # Install user configurations
 _ rm -rf /temp
 _ mkdir /temp
@@ -80,9 +83,6 @@ _ shopt -u dotglob nullglob
 _ rm -r /temp
 _ sudo -u $USERNAME $(bash $INSTALLATION)
 system_update
-
-# Install programs
-_ bash $DIR/install.sh
 
 # Enable services
 _ systemctl daemon-reload
