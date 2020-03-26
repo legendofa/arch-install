@@ -80,8 +80,9 @@ aur_package_install(){
 
 # Misc
 systembeep_off(){
-	_ rmmod pcspkr
-	_ echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
+	if [ ! rmmod pcspkr ]; then
+		_ echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
+	fi
 }
 
 # Hardware and software check

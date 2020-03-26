@@ -74,7 +74,7 @@ _ git clone $CONFIG_FILES /temp
 _ chown -R $USERNAME /temp
 _ chgrp -R wheel /temp
 _ shopt -s dotglob nullglob
-_ sudo -u $USERNAME cp -r /temp/* /home/$USERNAME
+_ sudo -u $USERNAME cp -rf /temp/* /home/$USERNAME
 _ shopt -u dotglob nullglob
 _ rm -r /temp
 _ sudo -u $USERNAME $(bash $INSTALLATION)
