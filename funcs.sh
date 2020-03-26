@@ -62,7 +62,9 @@ mirror_setup(){
 	_ reflector --country $COUNTRYCODE --fastest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 }
 package_install(){
-	_ pacman -S $1 --noconfirm
+	if [ ! pacman -Qi "$1" ]; then
+		_ pacman -S $1 --noconfirm
+	fi
 }
 manual_install(){
 	_ [ -f "/usr/bin/$1" ] || (
@@ -75,7 +77,9 @@ manual_install(){
 	_ cd /tmp || return)
 }
 aur_package_install(){
-	_ sudo -u $1 $2 -S --noconfirm $3
+	if [ ! "$2" -Qi "$3" ]; then
+		_ sudo -u $1 $2 -S --noconfirm $3
+	fi
 }
 
 # Misc
