@@ -62,7 +62,7 @@ mirror_setup(){
 	_ reflector --country $COUNTRYCODE --fastest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 }
 package_install(){
-	if [ ! $(pacman -Qi "$1") ]; then
+	if [ ! "$(pacman -Qi $1)" ]; then
 		_ pacman -S $1 --noconfirm
 	fi
 }
@@ -77,14 +77,14 @@ manual_install(){
 	_ cd /tmp || return)
 }
 aur_package_install(){
-	if [ ! "$2" -Qi "$3" ]; then
+	if [ ! "$2 -Qi $3" ]; then
 		_ sudo -u $1 $2 -S --noconfirm $3
 	fi
 }
 
 # Misc
 systembeep_off(){
-	if [ ! rmmod pcspkr ]; then
+	if [ ! "$(rmmod pcspkr)" ]; then
 		_ echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 	fi
 }

@@ -92,7 +92,7 @@ do
 done
 
 # Set X11 keymap
-_ sudo -u $USERNAME lines /home/$USERNAME/.xinitrc "setxkbmap -layout ${KEYMAP}"
+_ sudo -u $USERNAME lines /home/$USERNAME/.xinitrc "setxkbmap -layout $KEYMAP"
 
 # Changing sudoers file
 new_permissions "%wheel ALL=(ALL) ALL #ARCH
