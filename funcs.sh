@@ -77,7 +77,7 @@ manual_install(){
 	_ cd /tmp || return)
 }
 aur_package_install(){
-	if [ ! "$2 -Qi $3" ]; then
+	if [ ! "$($2 -Qi $3)" ]; then
 		_ sudo -u $1 $2 -S --noconfirm $3
 	fi
 }
