@@ -1,6 +1,8 @@
 alsa-utils
 autofs
 bash-completion
+cups
+cups-pdf
 dhcpcd
 exfat-utils
 feh

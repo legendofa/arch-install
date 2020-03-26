@@ -1,6 +1,0 @@
-- sddm theme
-- check -> keymap
-- check -> programs dont install correctly
-- check -> usbguard
-- if [ ! "$(rmmod pcspkr)" ]; then
-- if [ ! $(grep -F julian /etc/passwd) == *"zsh"* ]; then
