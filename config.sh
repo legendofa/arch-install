@@ -6,7 +6,7 @@ PROG=prog
 
 # Installer visuals
 LOGO="-->"
-SPACING="~~~"
+SPACING=""
 COLOR='\033[0;36m'
 
 # Installation medium
