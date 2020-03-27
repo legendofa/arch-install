@@ -27,12 +27,14 @@ partition $DISK
 mirror_setup
 
 # Install Arch
-if [ ! -e /etc/arch-release ]; then
+if [ ! -e /mnt/etc/arch-release ]; then
 	_ pacstrap /mnt base base-devel linux linux-firmware sudo nano
 fi
 
 # Configure the system
-_ rm -f /mnt/etc/fstab
+if [ -e /mnt/etc/fstab ]; then
+	_ rm /mnt/etc/fstab
+fi
 _ genfstab -U /mnt >> /mnt/etc/fstab
 
 # Chroot and preparation
