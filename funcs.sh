@@ -40,8 +40,8 @@ partition(){
 	_ mount /dev/mapper/cryptroot /mnt
 	# EFI partition preparation
 	_ mkfs.fat -F32 "${1}1"
-	_ mkdir /mnt/efi
-	_ mount "${1}1" /mnt/efi
+	_ mkdir /mnt/boot
+	_ mount "${1}1" /mnt/boot
 }
 
 # Write functions

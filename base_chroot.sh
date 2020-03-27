@@ -35,11 +35,10 @@ _ mkinitcpio -p linux
 # Bootloader
 package_install grub
 package_install efibootmgr
-_ rm -f /etc/fstab
-_ grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
+_ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 lines /etc/default/grub "GRUB_TIMEOUT=.5"
 lines /etc/default/grub "GRUB_CMDLINE_LINUX=\"cryptdevice=${DISK}2:luks_root\""
-_ grub-mkconfig -o /efi/grub/grub.cfg
+_ grub-mkconfig -o /boot/grub/grub.cfg
 
 # Enable swap in swapfile
 package_install systemd-swap
