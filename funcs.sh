@@ -36,7 +36,7 @@ partition(){
 	# System check
 	_ umount /mnt
 	_ cryptsetup close cryptroot
-	_ cryptsetup open "${1}2" cryptroot
+	_ echo -en "$LUKS_PASSWORD" | cryptsetup open "${1}2" cryptroot
 	_ mount /dev/mapper/cryptroot /mnt
 	# EFI partition preparation
 	_ mkfs.fat -F32 "${1}1"
