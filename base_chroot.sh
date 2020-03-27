@@ -46,7 +46,7 @@ _ sed "s/swapfc_enabled=0/swapfc_enabled=1/g" /etc/systemd/swap.conf
 _ systemctl enable systemd-swap
 
 # Create user
-if [ ! id -u "$USERNAME"]; then
+if [ ! $(id -u "$USERNAME") ]; then
 	_ useradd -m $USERNAME -g wheel
 fi
 _ chpasswd <<< "${USERNAME}:$PASSWORD"
