@@ -28,8 +28,8 @@ _ dhcpcd
 _ chpasswd <<< "root:$PASSWORD"
 
 # Configure mkinitcpio
-_ sed -i -e 's/MODULES=()/MODULES=(ext4)/g' /etc/mkinitcpio.conf
-_ sed -i -e 's/HOOKS=(base.*fsck)/HOOKS=(base systemd autodetect keyboard modconf block sd-encrypt filesystems fsck) /g' /etc/mkinitcpio.conf
+_ sed -i -e "s/MODULES=()/MODULES=(ext4)/g" /etc/mkinitcpio.conf
+_ sed -i -e "s/HOOKS=(base.*fsck)/HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt filesystems fsck)/g" /etc/mkinitcpio.conf
 _ mkinitcpio -p linux
 
 # Bootloader
@@ -38,9 +38,8 @@ package_install efibootmgr
 _ rm -f /etc/fstab
 _ grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 lines /etc/default/grub "GRUB_TIMEOUT=.5"
-lines /etc/default/grub "GRUB_ENABLE_CRYPTODISK=y"
-lines /etc/default/grub "GRUB_CMDLINE_LINUX=\"cryptdevice=${DISK}2:cryptroot root=/dev/mapper/cryptroot\""
-_ grub-mkconfig -o /boot/grub/grub.cfg
+lines /etc/default/grub "GRUB_CMDLINE_LINUX=\"cryptdevice=${DISK}2:luks_root\""
+_ grub-mkconfig -o /efi/grub/grub.cfg
 
 # Enable swap in swapfile
 package_install systemd-swap
