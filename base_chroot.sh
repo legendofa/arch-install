@@ -29,7 +29,8 @@ _ chpasswd <<< "root:$PASSWORD"
 
 # Configure mkinitcpio
 _ sed -i -e 's/MODULES=()/MODULES=(ext4)/g' /etc/mkinitcpio.conf
-_ sed -i -e 's/HOOKS=(/HOOKS=(keyboard keymap encrypt /g' /etc/mkinitcpio.conf
+_ sed -i -e 's/HOOKS=(/HOOKS=(systemd keyboard sd-vconsole sd-encrypt /g' /etc/mkinitcpio.conf
+mkinitcpio -p linux
 
 # Bootloader
 package_install grub
