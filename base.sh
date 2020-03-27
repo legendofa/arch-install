@@ -27,13 +27,15 @@ partition $DISK
 mirror_setup
 
 # Install Arch
-_ pacstrap /mnt base base-devel linux linux-firmware sudo nano
+if [ ! -e /etc/arch-release ]; then
+	_ pacstrap /mnt base base-devel linux linux-firmware sudo nano
+fi
 
 # Configure the system
 _ rm -f /mnt/etc/fstab
 _ genfstab -U /mnt >> /mnt/etc/fstab
 
 # Chroot and preparation
-_ mkdir /mnt/scripts
+_ mkdir -p /mnt/scripts
 _ cp -r $DIR/* /mnt/scripts
 _ arch-chroot /mnt /bin/bash -c "bash /scripts/base_chroot.sh"
