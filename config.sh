@@ -10,7 +10,7 @@ SPACING=""
 COLOR='\033[0;36m'
 
 # Installation medium
-DISK="/dev/vda"
+DISK="/dev/sdX"
 
 LUKS_PASSWORD="Test"
 
@@ -31,15 +31,15 @@ LOCALE="en_US.UTF-8 UTF-8"
 PASSWORD="Test"
 
 # Username
-USERNAME="julian"
+USERNAME="jeinzi"
 
 AURHELPER="yay"
 
 DISPLAY_MANAGER="sddm"
 
 # Home directory repository
-CONFIG_FILES="http://192.168.178.67:8080/Julian/julian"
-INSTALLATION="/home/julian/bin/setup.sh"
+CONFIG_FILES="https://github.com/Jeinzi/arch-configuration"
+INSTALLATION="/home/$USERNAME/.bin/install.sh"
 
 # Services
-declare -a SERVICES=("$DISPLAY_MANAGER" "NetworkManager" "autofs" "org.cups.cupsd.path" "ufw" "usbguard" "update-background.timer")
+declare -a SERVICES=("$DISPLAY_MANAGER" "NetworkManager" "autofs" "org.cups.cupsd.path")
