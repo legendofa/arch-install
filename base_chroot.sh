@@ -91,8 +91,8 @@ do
    _ systemctl enable $i
 done
 
-# Set X11 keymap
-_ lines /home/$USERNAME/.xinitrc "setxkbmap -layout $KEYMAP"
+# Set X11 and console keymap
+_ localectl set-keymap $KEYMAP
 
 # Changing sudoers file
 new_permissions "%wheel ALL=(ALL) ALL #ARCH
