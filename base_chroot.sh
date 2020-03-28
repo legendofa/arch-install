@@ -28,8 +28,8 @@ _ dhcpcd
 _ chpasswd <<< "root:$PASSWORD"
 
 # Configure mkinitcpio
-_ sed "s/MODULES=()/MODULES=(ext4)/g" /etc/mkinitcpio.conf
-_ sed "s/HOOKS=(base.*fsck)/HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt filesystems fsck)/g" /etc/mkinitcpio.conf
+_ sed -i "s/MODULES=()/MODULES=(ext4)/g" /etc/mkinitcpio.conf
+_ sed -i "s/HOOKS=(base.*fsck)/HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt filesystems fsck)/g" /etc/mkinitcpio.conf
 _ mkinitcpio -p linux
 
 # Bootloader
@@ -42,7 +42,7 @@ _ grub-mkconfig -o /boot/grub/grub.cfg
 
 # Enable swap in swapfile
 package_install systemd-swap
-_ sed "s/swapfc_enabled=0/swapfc_enabled=1/g" /etc/systemd/swap.conf
+_ sed -i "s/swapfc_enabled=0/swapfc_enabled=1/g" /etc/systemd/swap.conf
 _ systemctl enable systemd-swap
 
 # Create user
@@ -52,7 +52,7 @@ fi
 _ chpasswd <<< "${USERNAME}:$PASSWORD"
 
 # Allow user to run sudo without password
-lines "%wheel ALL=(ALL) NOPASSWD: ALL" /etc/sudoers
+lines /etc/sudoers "%wheel ALL=(ALL) NOPASSWD: ALL"
 
 # Setup yay
 package_install wget
@@ -95,4 +95,5 @@ done
 _ localectl set-keymap $KEYMAP
 
 # Change sudoers permissions
-_ sed "s/%wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: /usr/bin/pacman -Syu, /usr/bin/pacman -Syu --noconfirm/g" /etc/sudoers
+_ sed -i "s/%wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: \/usr\/bin\/pacman -Syu, \/usr\/bin\/pacman -Syu --noconfirm/g" /etc/sudoers
+lines /etc/sudoers "%wheel ALL=(ALL) ALL"
