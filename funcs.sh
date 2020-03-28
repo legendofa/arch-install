@@ -48,10 +48,6 @@ partition(){
 lines(){
 	_ grep -qxF "$2" $1 || echo "$2" >> $1
 }
-new_permissions(){
-	_ sed -i "/#ARCH/d" /etc/sudoers
-	_ echo "$* #ARCH" >> /etc/sudoers
-}
 
 # Installation functions
 system_update(){

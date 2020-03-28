@@ -28,8 +28,8 @@ _ dhcpcd
 _ chpasswd <<< "root:$PASSWORD"
 
 # Configure mkinitcpio
-_ sed -i -e "s/MODULES=()/MODULES=(ext4)/g" /etc/mkinitcpio.conf
-_ sed -i -e "s/HOOKS=(base.*fsck)/HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt filesystems fsck)/g" /etc/mkinitcpio.conf
+_ sed "s/MODULES=()/MODULES=(ext4)/g" /etc/mkinitcpio.conf
+_ sed "s/HOOKS=(base.*fsck)/HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt filesystems fsck)/g" /etc/mkinitcpio.conf
 _ mkinitcpio -p linux
 
 # Bootloader
@@ -52,7 +52,7 @@ fi
 _ chpasswd <<< "${USERNAME}:$PASSWORD"
 
 # Allow user to run sudo without password
-new_permissions "%wheel ALL=(ALL) NOPASSWD: ALL"
+lines "%wheel ALL=(ALL) NOPASSWD: ALL" /etc/sudoers
 
 # Setup yay
 package_install wget
@@ -94,6 +94,5 @@ done
 # Set X11 and console keymap
 _ localectl set-keymap $KEYMAP
 
-# Changing sudoers file
-new_permissions "%wheel ALL=(ALL) ALL #ARCH
-%wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/wifi-menu,/usr/bin/mount,/usr/bin/umount,/usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/packer -Syu,/usr/bin/packer -Syyu,/usr/bin/systemctl restart NetworkManager,/usr/bin/rc-service NetworkManager restart,/usr/bin/pacman -Syyu --noconfirm,/usr/bin/loadkeys,/usr/bin/yay,/usr/bin/pacman -Syyuw --noconfirm"
+# Change sudoers permissions
+_ sed "s/%wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: /usr/bin/pacman -Syu, /usr/bin/pacman -Syu --noconfirm/g" /etc/sudoers
