@@ -9,6 +9,7 @@ source $DIR/config.sh
 source $DIR/funcs.sh
 
 # Set mirrors
+system_update
 mirror_setup
 
 # Time zone
@@ -81,6 +82,7 @@ _ shopt -s dotglob nullglob
 _ sudo -u $USERNAME cp -rf /temp/* /home/$USERNAME
 _ shopt -u dotglob nullglob
 _ rm -r /temp
+_ chmod 755 /home/$USERNAME
 _ sudo -u $USERNAME bash $INSTALLATION
 system_update
 

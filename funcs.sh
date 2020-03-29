@@ -51,7 +51,7 @@ lines(){
 
 # Installation functions
 system_update(){
-	_ pacman -Syu
+	_ pacman -Syu --noconfirm
 }
 mirror_setup(){
 	package_install reflector
